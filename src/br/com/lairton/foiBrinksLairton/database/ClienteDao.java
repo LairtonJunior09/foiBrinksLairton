@@ -5,7 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import br.com.lairton.foiBrinksLairton.model.Cliente;
 
@@ -107,11 +109,11 @@ public class ClienteDao {
 				cliente.setEstado(rs.getString("Estado"));
 
 				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("dataNascimento"));
 				cliente.setDataNascimento(data);
 				data.setTime(rs.getDate("dataNascimento"));
 				cliente.setDataCadastro(data);
-			
+				data.setTime(rs.getDate("dataCadastro"));
+
 			}
 			rs.close();
 			prepState.close();
@@ -119,5 +121,40 @@ public class ClienteDao {
 			throw new RuntimeException(e);
 		}
 		return cliente;
+	}
+
+	public List<Cliente> getLista() {
+		try {
+			List<Cliente> clientes = new ArrayList<Cliente>();
+			PreparedStatement prepState = this.connection
+					.prepareStatement("SELECT FROM `clientes` id_cliente`=?");
+			ResultSet rs = prepState.executeQuery();
+
+			while (rs.next()) {
+
+				Cliente cliente = new Cliente();
+				cliente.setId_cliente(rs.getLong("Id"));
+				cliente.setNome_completo(rs.getString("Nome"));
+				cliente.setEstadoCivil(rs.getString("Estado Civil"));
+				cliente.setGênero(rs.getString("Genero"));
+				cliente.setRua(rs.getString("Rua"));
+				cliente.setBairro(rs.getString("Bairro"));
+				cliente.setCep(rs.getString("Cep"));
+				cliente.setEstado(rs.getString("Estado"));
+
+				Calendar data = Calendar.getInstance();
+				cliente.setDataNascimento(data);
+				data.setTime(rs.getDate("dataNascimento"));
+				cliente.setDataCadastro(data);
+				data.setTime(rs.getDate("dataCadastro"));
+
+				clientes.add(cliente);
+			}
+			rs.close();
+			prepState.close();
+			return clientes;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

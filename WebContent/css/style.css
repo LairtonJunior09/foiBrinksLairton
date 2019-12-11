@@ -1,0 +1,106 @@
+/* corpo */
+body {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+    font-size: 12px;
+	font-family: sans-serif;
+	background-image: url(../img/bgbody.jpg);
+    background-size: 120%;
+    animation: bganimation 40s infinite;
+}
+@keyframes bganimation {
+	0%{background-position: 0% 50%;}
+	50%{background-position: 100% 50%;}
+	100%{background-position: 0% 50%;}
+}
+/* label menu */
+#btn-menu{
+    display: none;
+}
+header label{
+    font-size: 20px;
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    width: 20px;
+    display: none;
+}
+header label:hover{
+    background-color: #191919;
+    border-radius: 8%;
+}
+/* menu principal */
+.menu-principal ul{
+    list-style: none;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #191919;
+}
+.menu-principal ul li{
+    float: left;
+}
+.menu-principal a{
+    display: block;
+    font-family: 'Abel';
+    font-size: 22px;
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-bottom: 4px solid #191919;
+}
+.menu-principal a:hover{
+    border-bottom: 4px solid #2a79be;
+    color: #2a79be;
+}
+.logo{
+    display: block;
+    justify-content: center;
+    margin: 20px;
+}
+@media(max-width: 640px) {
+	body{
+	background-size: no-repeat bottom center scroll;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+	}
+	.logo img{
+	max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+	}
+    header label {
+        display: block;
+    }
+    .menu-principal ul {
+        position: absolute;
+        background-color: #191919;
+        width: 120px;
+        flex-direction: column;
+        margin-left: -70%;
+        transition: all .4s;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+    .menu-principal a{
+        border-bottom: none;
+        color: white;
+    }
+    .menu-principal a:hover{
+        background-color: #2a79be;
+        border-bottom: none;
+        color: #efefef;
+    }
+    #btn-menu:checked ~ .menu-principal ul {
+        margin-left: 0;
+    }
+    header label {
+        color: white;
+    }
+    header label:hover {
+        color: white;
+    }
+}
