@@ -6,7 +6,7 @@ br.com.lairton.foiBrinksLairton.model.*"
 <!DOCTYPE html5>
 <html>
 <head>
-<title>Clientes</title>
+<title>Produtos</title>
 <!-- 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"> -->
 <!-- 		<link rel="stylesheet" type="text/css" href="css/style-lista.css"> -->
 <!-- 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"  -->
@@ -21,39 +21,37 @@ br.com.lairton.foiBrinksLairton.model.*"
 			<thead class="topico">
 				<tr>
 					<th>Id</th>
-					<th>Nome</th>
-					<th>Estado Civil</th>
-					<th>Gênero</th>
-					<th>Rua</th>
-					<th>Bairro</th>
-					<th>Cep</th>
-					<th>Estado</th>
-					<th>Cidade</th>
-					<th>Cpf</th>
-
-					<th>Data de Nascimento</th>
+					<th>Nome do produto</th>
+					<th>Marca</th>
+					<th>Faixa etária indicada</th>
+					<th>Altura</th>
+					<th>Largura</th>
+					<th>Profundidade</th>
+					<th>Peso</th>
+					<th>Preço</th>
+					<th>Data de cadastro no sistema</th>
 					<th colspan="2">Gerenciamento</th>
 				</tr>
 			</thead>
 			<%
 				SimpleDateFormat sdt = new SimpleDateFormat("dd/MM/yyyy");
-																																								ClienteDao dao = new ClienteDao();
-																																								List<Cliente> clientes = dao.getLista();
-																																								for (Cliente cliente : clientes ) {
+																																													ClienteDao dao = new ClienteDao();
+																																													List<Cliente> clientes = dao.getLista();
+					Produto produto = new Produto();																																								for (Cliente cliente : clientes ) {
 			%>
 			<tbody class="item">
 				<tr>
-					<td><%=cliente.getId_cliente()%></td>
-					<td><%=cliente.getNome_completo()%></td>
-					<td><%=cliente.getCpf()%></td>
-					<td><%=cliente.getGênero()%></td>
-					<td><%=cliente.getEstadoCivil()%></td>
-					<td><%=cliente.getCep()%></td>
-					<td><%=cliente.getBairro()%></td>
-					<td><%=cliente.getCidade()%></td>
-					<td><%=cliente.getRua()%></td>
-					<td><%=sdt.format(cliente.getDataNascimento().getTime())%></td>
-					<td><%=sdt.format(cliente.getDataCadastro().getTime())%></td>
+
+					<td><%=produto.getNomeProduto()%></td>
+					<td><%=produto.getMarca()%></td>
+					<td><%=produto.getFaixaEtaria()%></td>
+					<td><%=produto.getAltura()%></td>
+					<td><%=produto.getLargura()%></td>
+					<td><%=produto.getProfundidade()%></td>
+					<td><%=produto.getPeso()%></td>
+					<td><%=produto.getPreco()%></td>
+
+					<td><%=sdt.format(produto.getDataCadastro().getTime())%></td>
 					<td><a
 						href="altera-cliente.jsp?id=<%=cliente.getId_cliente()%>"><i
 							class="fas fa-user-edit"></i>Alterar</a></td>

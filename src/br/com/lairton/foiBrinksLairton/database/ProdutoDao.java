@@ -115,35 +115,37 @@ public class ProdutoDao {
 		}
 		return produto;
 	}
-		public List<Produto> getLista() {
-			try {
-				List<Produto> produtos = new ArrayList<Produto>();
-				PreparedStatement prepState = this.connection
-						.prepareStatement("SELECT FROM `produtos` WHERE  `id_produto`=?");
-				ResultSet rs = prepState.executeQuery();
 
-				while (rs.next()) {
-					Produto produto = new Produto();
-					produto.setId_produto(rs.getLong("Id"));
-					produto.setNomeProduto(rs.getString("Nome"));
-					produto.setMarca(rs.getString("Marca do Produto"));
-					produto.setFaixaEtaria(rs.getString("Faixa Etária"));
-					produto.setAltura(rs.getDouble("Altura"));
-					produto.setLargura(rs.getDouble("Largura"));
-					produto.setProfundidade(rs.getDouble("Profundidade"));
-					produto.setPreco(rs.getDouble("Preço R$"));
+	public List<Produto> getLista() {
+		try {
+			List<Produto> produtos = new ArrayList<Produto>();
+			PreparedStatement prepState = this.connection
+					.prepareStatement("SELECT FROM `produtos` WHERE  `id_produto`=?");
+			ResultSet rs = prepState.executeQuery();
 
-					Calendar data = Calendar.getInstance();
-					produto.setDataCadastro(data);
-					data.setTime(rs.getDate("Data Cadastro"));;
+			while (rs.next()) {
+				Produto produto = new Produto();
+				produto.setId_produto(rs.getLong("Id"));
+				produto.setNomeProduto(rs.getString("Nome"));
+				produto.setMarca(rs.getString("Marca do Produto"));
+				produto.setFaixaEtaria(rs.getString("Faixa Etária"));
+				produto.setAltura(rs.getDouble("Altura"));
+				produto.setLargura(rs.getDouble("Largura"));
+				produto.setProfundidade(rs.getDouble("Profundidade"));
+				produto.setPreco(rs.getDouble("Preço R$"));
 
-					produtos.add(produto);
-				}
-				rs.close();
-				prepState.close();
-				return produtos;
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
+				Calendar data = Calendar.getInstance();
+				produto.setDataCadastro(data);
+				data.setTime(rs.getDate("Data Cadastro"));
+				;
+
+				produtos.add(produto);
 			}
+			rs.close();
+			prepState.close();
+			return produtos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 	}
+}
