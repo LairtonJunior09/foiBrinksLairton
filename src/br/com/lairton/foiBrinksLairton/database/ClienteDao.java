@@ -42,6 +42,5 @@ public class ClienteDao {
 		} catch (SQLException exp) {
 			throw new RuntimeException(exp);
 		}
-
 	}
 }
