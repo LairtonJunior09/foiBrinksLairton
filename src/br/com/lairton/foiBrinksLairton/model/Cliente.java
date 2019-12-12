@@ -6,7 +6,7 @@ public class Cliente {
 	private long id_cliente;
 	private String nome_completo;
 	private String estadoCivil;
-	private String gênero;
+	private String genero;
 	private String rua;
 	private String bairro;
 	private String cep;
@@ -34,10 +34,10 @@ public class Cliente {
 		this.estadoCivil = estadoCivil;
 	}
 	public String getGênero() {
-		return gênero;
+		return genero;
 	}
 	public void setGênero(String gênero) {
-		this.gênero = gênero;
+		this.genero = gênero;
 	}
 	public String getRua() {
 		return rua;
